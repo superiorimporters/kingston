@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kingston Greenways Association</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:#f7f4ee;color:#1a1a18;overflow-x:hidden}
+
+:root{
+  --forest:#1b3328;
+  --moss:#3a5e48;
+  --sage:#6e9e7d;
+  --meadow:#aecdb7;
+  --gold:#c6973f;
+  --gold2:#e8b84b;
+  --sky:#deeee5;
+  --cream:#f7f4ee;
+  --sand:#eee9de;
+}
+
+/* ── NAV ── */
+nav{
+  background:var(--forest);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;
+  border-bottom:2px solid var(--gold);
+  position:sticky;top:0;z-index:99;
+}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-dot{
+  width:36px;height:36px;background:var(--gold);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0
+}
+.logo-text{font-family:'Lora',serif;font-size:14px;font-weight:700;color:#f7f4ee;line-height:1.25}
+.logo-sub{font-family:'Outfit',sans-serif;font-size:11px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--sage)}
+
+/* hamburger button — visible on mobile only */
+.burger{
+  display:flex;flex-direction:column;justify-content:center;gap:5px;
+  background:none;border:none;cursor:pointer;padding:4px;
+  width:36px;height:36px;flex-shrink:0
+}
+.burger span{
+  display:block;height:2px;background:var(--meadow);border-radius:2px;
+  transition:transform .3s,opacity .3s,width .3s
+}
+.burger span:nth-child(2){width:70%;align-self:flex-end}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0;width:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* mobile menu drawer */
+.nav-links{
+  display:none;flex-direction:column;gap:0;list-style:none;
+  position:absolute;top:100%;left:0;right:0;
+  background:var(--forest);
+  border-bottom:2px solid var(--gold);
+  padding:8px 0;
+}
+.nav-links.open{display:flex}
+.nav-links li a{
+  display:block;padding:14px 24px;
+  color:var(--meadow);text-decoration:none;
+  font-size:15px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:background .2s,color .2s
+}
+.nav-links li:last-child a{border-bottom:none}
+.nav-links li a:hover{background:rgba(255,255,255,.05);color:var(--gold2)}
+
+@media(min-width:720px){
+  nav{padding:14px 48px}
+  .burger{display:none}
+  .nav-links{
+    display:flex;flex-direction:row;gap:28px;
+    position:static;background:none;border:none;padding:0
+  }
+  .nav-links li a{
+    display:inline;padding:0;border:none;font-size:10px;
+    background:none !important
+  }
+}
+
+/* ── HERO ── */
+.hero{background:var(--forest);padding:60px 32px 48px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(198,151,63,.15);border:1px solid var(--gold);
+  border-radius:100px;padding:5px 14px;margin-bottom:20px;
+  font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)
+}
+.hero h1{
+  font-family:'Lora',serif;font-size:clamp(36px,7vw,64px);font-weight:700;
+  color:#f7f4ee;line-height:1.1;margin-bottom:18px
+}
+.hero h1 em{font-style:italic;color:var(--sage)}
+.hero-desc{font-size:15px;color:var(--meadow);line-height:1.7;margin-bottom:28px;font-weight:300;max-width:560px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.hero-photos{
+  display:grid;grid-template-columns:1fr 1fr;gap:4px;
+  margin-top:32px;border-radius:10px;overflow:hidden
+}
+.hero-photos img{width:100%;height:180px;object-fit:cover;display:block}
+.hero-photos img:first-child{grid-column:span 2;height:220px}
+
+/* ── BUTTONS ── */
+.btn-gold{
+  background:var(--gold);color:var(--forest);border:none;
+  padding:12px 24px;border-radius:4px;cursor:pointer;
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:background .2s,transform .2s
+}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-ghost{
+  background:transparent;color:#f7f4ee;border:1.5px solid rgba(255,255,255,.3);
+  padding:12px 24px;border-radius:4px;cursor:pointer;
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:border-color .2s,color .2s
+}
+.btn-ghost:hover{border-color:var(--sage);color:var(--sage)}
+
+/* ── TICKER ── */
+.ticker{background:var(--gold);overflow:hidden;padding:9px 0}
+.ticker-track{display:flex;white-space:nowrap;animation:tick 28s linear infinite}
+.ticker-track span{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--forest);padding:0 28px}
+.ticker-track span::before{content:'✦';margin-right:8px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── STATS ── */
+.stats{
+  background:var(--forest);
+  display:grid;grid-template-columns:repeat(2,1fr);
+}
+.stat{padding:28px 20px;text-align:center;border:1px solid rgba(255,255,255,.08)}
+.stat-num{font-family:'Lora',serif;font-size:34px;font-weight:700;color:var(--gold);line-height:1}
+.stat-lbl{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-top:6px}
+
+/* ── SECTION ── */
+.section{padding:52px 32px}
+.tag{font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--moss);display:block;margin-bottom:8px}
+.h2{font-family:'Lora',serif;font-size:clamp(26px,5vw,36px);font-weight:700;color:var(--forest);line-height:1.2}
+.h2 em{font-style:italic;color:var(--moss)}
+.sub{margin-top:10px;font-size:15px;color:#607068;line-height:1.7;font-weight:300}
+
+/* ── EVENTS ── */
+.events-grid{display:flex;flex-direction:column;gap:20px;margin-top:32px}
+.card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 16px rgba(27,51,40,.07)}
+.card img{width:100%;height:200px;object-fit:cover;display:block}
+.card-body{padding:18px 20px 22px}
+.badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--sky);color:var(--forest);
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  border-radius:100px;padding:4px 12px;margin-bottom:10px
+}
+.card h3{font-family:'Lora',serif;font-size:19px;font-weight:700;color:var(--forest);margin-bottom:8px;line-height:1.3}
+.card p{font-size:14px;color:#5a6a5e;line-height:1.65}
+.card-foot{
+  margin-top:14px;padding-top:12px;border-top:1px solid #dde8e0;
+  display:flex;flex-wrap:wrap;gap:8px;
+  font-size:13px;color:var(--moss);font-weight:500
+}
+
+/* ── GALLERY ── */
+.gallery-section{background:var(--forest);padding:52px 0}
+.gallery-header{padding:0 32px 28px}
+.gallery-header .tag{color:var(--gold)}
+.gallery-header .h2{color:#f7f4ee}
+.gallery-header .h2 em{color:var(--sage)}
+.gallery-header .sub{color:var(--meadow)}
+.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:0 3px}
+.photo-grid img{width:100%;height:140px;object-fit:cover;display:block;transition:transform .4s}
+.photo-grid img:hover{transform:scale(1.04)}
+.photo-grid .wide{grid-column:span 2;height:200px}
+
+/* ── FEATURE ── */
+.feature-section{background:var(--sand);padding:52px 32px}
+.feature-img{width:100%;height:280px;object-fit:cover;border-radius:10px;display:block;margin-bottom:28px}
+.feature-text .h2{margin-bottom:14px}
+.feature-text p{font-size:15px;color:#5a6a5e;line-height:1.75;margin-bottom:12px;font-weight:300}
+.dots{margin:14px 0 22px;display:flex;flex-direction:column;gap:9px}
+.dot-row{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--forest);font-weight:500}
+.dot-row::before{content:'';width:8px;height:8px;background:var(--gold);border-radius:50%;flex-shrink:0}
+
+/* ── NEWS ── */
+.news-section{background:#f7f4ee;padding:52px 32px}
+.news-list{margin-top:28px;display:flex;flex-direction:column;gap:0}
+.news-item{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid #d8e4da;align-items:flex-start}
+.news-item:first-child{padding-top:0}
+.news-thumb{width:90px;height:70px;object-fit:cover;border-radius:6px;flex-shrink:0}
+.news-date{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--moss);margin-bottom:5px}
+.news-item h3{font-family:'Lora',serif;font-size:16px;font-weight:700;color:var(--forest);margin-bottom:5px;line-height:1.35}
+.news-item p{font-size:13px;color:#5a6a5e;line-height:1.6}
+
+/* ── SIDEBAR CARDS ── */
+.scards{margin-top:28px;display:flex;flex-direction:column;gap:16px}
+.scard{background:var(--forest);border-radius:10px;padding:20px}
+.scard h4{font-family:'Lora',serif;font-size:16px;font-weight:700;color:#f7f4ee;margin-bottom:10px}
+.scard p{font-size:13px;color:var(--meadow);line-height:1.6;margin-bottom:10px}
+.birdlist{list-style:none;display:flex;flex-direction:column;gap:6px}
+.birdlist li{font-size:13px;color:var(--sage);display:flex;align-items:center;gap:6px}
+.birdlist li::before{content:'🪶';font-size:12px}
+.count-box{background:var(--gold);color:var(--forest);border-radius:6px;padding:12px;text-align:center;margin-top:12px}
+.count-box strong{display:block;font-family:'Lora',serif;font-size:28px;font-weight:700}
+.count-box span{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.scard-img{width:100%;height:100px;object-fit:cover;border-radius:6px;display:block;margin-bottom:10px}
+
+/* ── MISSION ── */
+.mission-section{
+  background:linear-gradient(150deg,var(--forest) 0%,#122219 100%);
+  padding:64px 32px
+}
+.mission-inner{max-width:700px;margin:0 auto}
+.mission-section .tag{color:var(--gold)}
+.mission-section .h2{color:#f7f4ee}
+.mission-section .h2 em{color:var(--sage)}
+.mission-quote{
+  font-family:'Lora',serif;font-size:15px;font-style:italic;
+  color:var(--meadow);line-height:1.75;margin:20px 0 28px;
+  border-left:3px solid var(--gold);padding-left:18px
+}
+.pillars{display:flex;flex-direction:column;gap:14px;margin-top:32px}
+.pillar{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:18px}
+.pillar-icon{font-size:22px;display:block;margin-bottom:8px}
+.pillar h4{font-family:'Lora',serif;font-size:15px;font-weight:700;color:#f7f4ee;margin-bottom:6px}
+.pillar p{font-size:13px;color:var(--sage);line-height:1.6}
+
+/* ── FOOTER ── */
+footer{background:#0e1c14;padding:44px 32px 24px}
+.footer-brand h3{font-family:'Lora',serif;font-size:16px;font-weight:700;color:#f7f4ee;margin-bottom:10px}
+.footer-brand p{font-size:13px;color:#5a7060;line-height:1.65;margin-bottom:28px}
+.footer-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px}
+.footer-col h4{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.footer-col a{font-size:13px;color:#6a8070;text-decoration:none;transition:color .2s}
+.footer-col a:hover{color:var(--sage)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:18px;font-size:12px;color:#3a5040;text-align:center}
+
+/* ── DESKTOP overrides (min 720px) ── */
+@media(min-width:720px){
+  nav{padding:14px 48px}
+  .hero{padding:72px 48px 56px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .hero-content{/* left col */}
+  .hero-photos{margin-top:0}
+  .hero-photos img{height:200px}
+  .hero-photos img:first-child{height:240px}
+  .stats{grid-template-columns:repeat(4,1fr)}
+  .section{padding:64px 48px}
+  .events-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .gallery-section{padding:64px 0}
+  .gallery-header{padding:0 48px 32px}
+  .photo-grid{grid-template-columns:repeat(4,1fr)}
+  .photo-grid img{height:170px}
+  .photo-grid .wide{grid-column:span 2;height:240px}
+  .feature-section{padding:72px 48px}
+  .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .feature-img{height:400px;margin-bottom:0}
+  .news-section{padding:64px 48px}
+  .news-layout{display:grid;grid-template-columns:3fr 2fr;gap:40px}
+  .news-list{margin-top:0}
+  .scards{margin-top:0}
+  .mission-section{padding:80px 48px}
+  .pillars{flex-direction:row}
+  .pillar{flex:1}
+  footer{padding:52px 48px 28px}
+  .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;margin-bottom:28px}
+  .footer-brand{margin-bottom:0}
+  .footer-cols{display:contents}
+  .footer-bottom{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-dot">🌿</div>
+    <div class="logo-text">
+      Kingston Greenways
+      <div class="logo-sub">Association · Kingston, NJ</div>
+    </div>
+  </a>
+  <button class="burger" id="burger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#events" class="nav-close">Events</a></li>
+    <li><a href="#gallery" class="nav-close">Gallery</a></li>
+    <li><a href="#news" class="nav-close">News</a></li>
+    <li><a href="#mission" class="nav-close">Mission</a></li>
+    <li><a href="https://www.kingstongreenways.org/Parks&TrailsWeLove.html" target="_blank">Trails</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">✦ Protecting Kingston's Natural Heritage</div>
+    <h1>Where <em>Nature</em><br>Meets Community</h1>
+    <p class="hero-desc">Kingston Greenways Association preserves open space, wildlife habitat, and the trails that connect our community to the natural landscapes of central New Jersey.</p>
+    <div class="hero-btns">
+      <a href="#events" class="btn-gold">Upcoming Events →</a>
+      <a href="#mission" class="btn-ghost">Our Mission</a>
+    </div>
+  </div>
+  <div class="hero-photos">
+    <img src="https://www.kingstongreenways.org/BambooCutting2026/After-the-bamboo-Hunt_20260530_104541-1024x662.jpg" alt="Bamboo cutting volunteers"/>
+    <img src="https://www.kingstongreenways.org/FFW2025/1000005961Web.jpg" alt="Fall foliage walk"/>
+    <img src="https://www.kingstongreenways.org/EarthDay2025/1000003850Web.jpg" alt="Earth Day cleanup"/>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Earth Day Cleanups</span><span>Bird Counts</span><span>Nature Walks</span>
+    <span>Open Space</span><span>Tree Registry</span><span>Trail Blazing</span>
+    <span>Wildlife Habitat</span><span>Mapleton Preserve</span><span>Heathcote Meadows</span>
+    <span>D&R Canal</span><span>Kingston NJ</span>
+    <span>Earth Day Cleanups</span><span>Bird Counts</span><span>Nature Walks</span>
+    <span>Open Space</span><span>Tree Registry</span><span>Trail Blazing</span>
+    <span>Wildlife Habitat</span><span>Mapleton Preserve</span><span>Heathcote Meadows</span>
+    <span>D&R Canal</span><span>Kingston NJ</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">42+</div><div class="stat-lbl">Bird Species Counted</div></div>
+  <div class="stat"><div class="stat-num">10.6<small style="font-size:18px">mi</small></div><div class="stat-lbl">Walked Per Count</div></div>
+  <div class="stat"><div class="stat-num">1,931</div><div class="stat-lbl">Birds in 2023 Count</div></div>
+  <div class="stat"><div class="stat-num">2016</div><div class="stat-lbl">Tree Registry Est.</div></div>
+</div>
+
+<!-- EVENTS -->
+<section class="section" id="events" style="background:#f7f4ee">
+  <span class="tag">On the Calendar</span>
+  <h2 class="h2">Upcoming <em>Events</em></h2>
+  <p class="sub">Cleanups, nature walks, bird counts, and community gatherings throughout the year.</p>
+  <div class="events-grid">
+
+    <div class="card">
+      <img src="https://www.kingstongreenways.org/EarthDay2026/1000007556web.jpg" alt="Earth Day 2026"/>
+      <div class="card-body">
+        <div class="badge">🌍 Earth Day</div>
+        <h3>Earth Day Cleanups</h3>
+        <p>Morning at Rockingham Historic Site &amp; Laurel Ave (9–11 AM). Afternoon along the Kingston Towpath &amp; D&R Canal (2–4 PM). Gloves and bags provided.</p>
+        <div class="card-foot"><span>📍 Kingston, NJ</span><span>Rain or Shine</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://www.kingstongreenways.org/AnnualMeeting2025/KianaPix/1000024167web.jpg" alt="Annual Meeting 2025"/>
+      <div class="card-body">
+        <div class="badge">🦉 Annual Meeting</div>
+        <h3>KGA Annual Meeting &amp; Program</h3>
+        <p>Expert speakers on local ecology and conservation. Community planning for open space preservation in the Kingston area.</p>
+        <div class="card-foot"><span>📍 Kingston, NJ</span><span>Members Welcome</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://www.kingstongreenways.org/BambooCutting2026/Trim-Point-2-Better_101454-1024x727.jpg" alt="Bamboo cutting"/>
+      <div class="card-body">
+        <div class="badge">🌿 Stewardship</div>
+        <h3>Bamboo Cutting Volunteers</h3>
+        <p>Help remove invasive bamboo from our preserves. Directly improve wildlife habitat and support native plant communities. All skill levels welcome.</p>
+        <div class="card-foot"><span>📍 Heathcote Preserve</span><span>All Levels</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://www.kingstongreenways.org/FFW2025/1000005961Web.jpg" alt="Fall Foliage Walk"/>
+      <div class="card-body">
+        <div class="badge">🍂 Nature Walk</div>
+        <h3>Fall Foliage Walk</h3>
+        <p>A guided annual ramble through Mapleton Preserve — native seeds, tree identification, and the remarkable mechanisms plants use to survive and replicate.</p>
+        <div class="card-foot"><span>📍 Mapleton Preserve</span><span>Family Friendly</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<div class="gallery-section" id="gallery">
+  <div class="gallery-header">
+    <span class="tag">From the Field</span>
+    <h2 class="h2">Kingston <em>In Pictures</em></h2>
+    <p class="sub">Seasons, species, stewards — captured by our community.</p>
+  </div>
+  <div class="photo-grid">
+    <img class="wide" src="https://www.kingstongreenways.org/BambooCutting2026/After-the-bamboo-Hunt_20260530_104541-1024x662.jpg" alt="Bamboo cutting"/>
+    <img src="https://www.kingstongreenways.org/FFW2025/1000005961Web.jpg" alt="Fall foliage"/>
+    <img src="https://www.kingstongreenways.org/EarthDay2025/IMG_20250419_095640Web.jpg" alt="Earth Day"/>
+    <img src="https://www.kingstongreenways.org/EarthDay2025/1000003858Web.jpg" alt="Volunteers"/>
+    <img src="https://www.kingstongreenways.org/FFW2023/BoelPix/ViburnumWeb.jpg" alt="Viburnum"/>
+    <img src="https://www.kingstongreenways.org/FFW2023/BoelPix/Hickory.jpg" alt="Hickory"/>
+    <img src="https://www.kingstongreenways.org/FFW2023/BoelPix/IMG_4617.jpg" alt="Fall walk"/>
+    <img src="https://www.kingstongreenways.org/EarthDay2025/1000003851Web.jpg" alt="Earth Day crew"/>
+    <img src="https://www.kingstongreenways.org/BlueMoonWatch/full-moon-5016870_640.jpg" alt="Blue moon"/>
+    <img src="https://www.kingstongreenways.org/SummerEveningWalk2022/Camphor-weed.jpg" alt="Camphor weed"/>
+  </div>
+</div>
+
+<!-- FEATURED STORY -->
+<div class="feature-section" id="feature">
+  <div class="feature-grid">
+    <img class="feature-img" src="https://www.kingstongreenways.org/AnnualMeeting2023/BogTurtle_EricSambolWeb.jpg" alt="Bog Turtle — photo by Eric Sambol"/>
+    <div class="feature-text">
+      <span class="tag">Featured Story</span>
+      <h2 class="h2">Thinking Outside the Box About <em>Turtles &amp; Bogs</em></h2>
+      <p style="margin-top:14px">Since much of the remaining habitat for NJ's rarest turtle species occurs on private property, landowner collaboration is essential. KGA brought in Conserve Wildlife Foundation biologist Christine Healy to show what we can all do.</p>
+      <div class="dots">
+        <div class="dot-row">Box turtles — found in wooded uplands throughout NJ</div>
+        <div class="dot-row">Wood turtles — a species of special concern</div>
+        <div class="dot-row">Bog turtles — one of North America's most endangered</div>
+        <div class="dot-row">Financial &amp; technical support available to landowners</div>
+      </div>
+      <a href="https://www.youtube.com/watch?v=elPUyWlJfo0" target="_blank" class="btn-gold">Watch the Full Talk →</a>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS + SIDEBAR -->
+<div class="news-section" id="news">
+  <span class="tag">Latest</span>
+  <h2 class="h2">From the <em>Field</em></h2>
+  <div class="news-layout">
+
+    <div class="news-list">
+      <div class="news-item">
+        <img class="news-thumb" src="https://www.kingstongreenways.org/EarthDay2026/1000007556web.jpg" alt="Earth Day 2026"/>
+        <div>
+          <div class="news-date">April 2026</div>
+          <h3>Earth Day 2026: A Community Cleanup</h3>
+          <p>Volunteers gathered at Rockingham Historic Site and along the Kingston Towpath — rain or shine, year after year.</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <img class="news-thumb" src="https://www.kingstongreenways.org/BambooCutting2026/Trim-Point-2-Better_101454-1024x727.jpg" alt="Bamboo 2026"/>
+        <div>
+          <div class="news-date">May 2026</div>
+          <h3>Invasive Bamboo Removed from Heathcote</h3>
+          <p>A dedicated crew restored native plant habitat across a key section of Heathcote Preserve in late May.</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <img class="news-thumb" src="https://www.kingstongreenways.org/BlueMoonWatch/full-moon-5016870_640.jpg" alt="Blue Moon"/>
+        <div>
+          <div class="news-date">August 2023</div>
+          <h3>Blue Moon Watch at Heathcote Park</h3>
+          <p>A warm summer evening brought the community together as insect choruses serenaded the gathering under a brilliant moon.</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <img class="news-thumb" src="https://www.kingstongreenways.org/SummerEveningWalk2022/JohnKeisersPix/IMG_20180907_145140320_HDR..jpg" alt="Summer walk"/>
+        <div>
+          <div class="news-date">August 2022</div>
+          <h3>Summer Evening Walk Through Heathcote Meadows</h3>
+          <p>Late summer grasses, goldenrod, milkweed, and two Great Blue Heron flyovers made for a memorable evening.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="scards">
+      <div class="scard">
+        <h4>🦅 2023 Christmas Bird Count</h4>
+        <p>Our Audubon count covered Mapleton Preserve, Heathcote Farms, and Cook Preserve on a misty December morning.</p>
+        <ul class="birdlist">
+          <li>Bald eagle at a new nest site</li>
+          <li>Two pileated woodpeckers</li>
+          <li>950+ robins in Mapleton alone</li>
+          <li>Great horned owl evening calls</li>
+          <li>Red-shouldered hawk, Basin St.</li>
+        </ul>
+        <div class="count-box"><strong>42</strong><span>species observed</span></div>
+      </div>
+      <div class="scard">
+        <h4>🌳 Kingston Tree Registry</h4>
+        <p>Know a remarkable tree in Kingston? Nominate it to KGA's Tree Registry and help us celebrate our local natural landmarks.</p>
+        <a href="https://www.kingstongreenways.org" target="_blank" class="btn-gold" style="font-size:10px;padding:8px 14px;margin-top:4px">Nominate a Tree →</a>
+      </div>
+      <div class="scard">
+        <h4>🐟 Hooked on Fishing</h4>
+        <img class="scard-img" src="https://www.kingstongreenways.org/HookedOnFishing/istockphoto-531010168-612x612.jpg" alt="Fishing"/>
+        <p>Youth fishing programs connecting families to our local waterways and the outdoors.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MISSION -->
+<div class="mission-section" id="mission">
+  <div class="mission-inner">
+    <span class="tag">Who We Are</span>
+    <h2 class="h2">A Community <em>Rooted</em> in Nature</h2>
+    <blockquote class="mission-quote">
+      "Kingston Greenways Association works to protect open space, preserve farmland, and steward the trails and waterways that define our community's natural character — for this generation and the next."
+    </blockquote>
+    <a href="https://www.kingstongreenways.org/Mission.html" target="_blank" class="btn-gold">Read Our Full Mission →</a>
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-icon">🌲</span>
+        <h4>Open Space</h4>
+        <p>Protecting forests, meadows, and natural corridors that wildlife and people depend on.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🦜</span>
+        <h4>Wildlife Habitat</h4>
+        <p>Supporting eagles, turtles, owls, herons, and hundreds of species that call Kingston home.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🥾</span>
+        <h4>Trails &amp; Access</h4>
+        <p>Blazing and maintaining trails that connect our community to the land and to each other.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Kingston Greenways Association</h3>
+      <p>Preserving the open spaces, natural areas, and trails that make Kingston, NJ a special place to live, work, and explore.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="https://www.kingstongreenways.org/Mission.html" target="_blank">Our Mission</a></li>
+          <li><a href="https://www.kingstongreenways.org/Parks&TrailsWeLove.html" target="_blank">Parks &amp; Trails</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://www.kingstongreenways.org/CBC2022.pdf" target="_blank">Bird Count Results</a></li>
+          <li><a href="https://archive.org/details/kga-1012.2025" target="_blank">Fall Foliage Video</a></li>
+          <li><a href="https://homegrownnationalpark.org/" target="_blank">Homegrown Nat'l Park</a></li>
+          <li><a href="https://dep.nj.gov/njfw/" target="_blank">NJ Fish &amp; Wildlife</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://www.kingstongreenways.org" target="_blank">kingstongreenways.org</a></li>
+          <li><a href="https://www.inaturalist.org" target="_blank">iNaturalist</a></li>
+          <li><a href="https://www.cocorahs.org" target="_blank">CoCoRaHS</a></li>
+          <li><a href="https://njclimate.org" target="_blank">NJ Climate</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Kingston Greenways Association · Kingston, NJ · Protecting our green spaces</div>
+</footer>
+
+<style>
+/* ── LIGHTBOX ── */
+#lightbox{
+  display:none;position:fixed;inset:0;z-index:999;
+  background:rgba(0,0,0,.92);
+  align-items:center;justify-content:center;
+  cursor:zoom-out;
+}
+#lightbox.active{display:flex}
+#lightbox img{
+  max-width:95vw;max-height:92vh;
+  object-fit:contain;border-radius:6px;
+  box-shadow:0 8px 48px rgba(0,0,0,.6);
+  animation:lbIn .2s ease;
+}
+@keyframes lbIn{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:scale(1)}}
+#lb-close{
+  position:fixed;top:16px;right:20px;
+  background:none;border:none;color:#fff;font-size:32px;
+  cursor:pointer;line-height:1;opacity:.8;transition:opacity .2s
+}
+#lb-close:hover{opacity:1}
+#lb-prev,#lb-next{
+  position:fixed;top:50%;transform:translateY(-50%);
+  background:rgba(255,255,255,.12);border:none;color:#fff;
+  font-size:26px;width:48px;height:64px;border-radius:6px;
+  cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center
+}
+#lb-prev{left:8px}
+#lb-next{right:8px}
+#lb-prev:hover,#lb-next:hover{background:rgba(255,255,255,.25)}
+#lb-counter{
+  position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
+  font-family:'Outfit',sans-serif;font-size:13px;color:rgba(255,255,255,.6);
+  letter-spacing:.08em
+}
+/* make all clickable photos show a pointer */
+.photo-grid img,.card img,.news-thumb,.feature-img,.scard-img{cursor:zoom-in}
+</style>
+
+<!-- LIGHTBOX OVERLAY -->
+<div id="lightbox">
+  <button id="lb-close">✕</button>
+  <button id="lb-prev">&#8249;</button>
+  <img id="lb-img" src="" alt=""/>
+  <button id="lb-next">&#8250;</button>
+  <div id="lb-counter"></div>
+</div>
+
+<script>
+  /* ── Hamburger ── */
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('nav-links');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-close').forEach(link => {
+    link.addEventListener('click', () => {
+      burger.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  /* ── Lightbox ── */
+  const lb       = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lb-img');
+  const lbClose  = document.getElementById('lb-close');
+  const lbPrev   = document.getElementById('lb-prev');
+  const lbNext   = document.getElementById('lb-next');
+  const lbCount  = document.getElementById('lb-counter');
+
+  // collect every clickable image on the page
+  const allImgs = Array.from(document.querySelectorAll(
+    '.photo-grid img, .card img, .news-thumb, .feature-img, .scard-img'
+  ));
+  let current = 0;
+
+  function openLb(idx) {
+    current = idx;
+    lbImg.src = allImgs[current].src;
+    lbImg.alt = allImgs[current].alt;
+    lbCount.textContent = (current + 1) + ' / ' + allImgs.length;
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLb() {
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  function showPrev() { openLb((current - 1 + allImgs.length) % allImgs.length); }
+  function showNext() { openLb((current + 1) % allImgs.length); }
+
+  allImgs.forEach((img, i) => img.addEventListener('click', () => openLb(i)));
+
+  lbClose.addEventListener('click', e => { e.stopPropagation(); closeLb(); });
+  lbPrev.addEventListener('click',  e => { e.stopPropagation(); showPrev(); });
+  lbNext.addEventListener('click',  e => { e.stopPropagation(); showNext(); });
+  lb.addEventListener('click', closeLb); // tap backdrop to close
+
+  // swipe support for mobile
+  let touchStartX = 0;
+  lb.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) dx < 0 ? showNext() : showPrev();
+  });
+
+  // keyboard support
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft')  showPrev();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'Escape')     closeLb();
+  });
+</script>
+</body>
+</html>
